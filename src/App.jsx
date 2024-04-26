@@ -4,13 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="bg-[#EDFAE7] font-[poppins]">
-      <Dashboard />
+      <Login />
     </div>
   )
 }

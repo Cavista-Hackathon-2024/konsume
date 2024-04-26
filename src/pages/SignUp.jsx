@@ -80,7 +80,7 @@ const SignUp = () => {
     return (
         <div className=" h-[100vh]">
             <div className="md:p-10 p-6">
-                <h1 className="md:text-3xl text-xl font-bold">Sign Up to Konsum</h1>
+                <h1 className="md:text-3xl text-xl font-bold">Sign Up to Konsume</h1>
                 <p className='md:text-xl text-sm mb-10'>Please provide your information to create an account</p>
                 <div className="imgg_container">
                     <div className="signup_img"></div>
@@ -98,8 +98,8 @@ const SignUp = () => {
                                 <label htmlFor="password" className=" text-sm md:text-xl font-bold">Password</label>
                                 <input type="password" placeholder="Password" id="password" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
-                            <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Join Now</button>
                         </form>
+                            <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Join Now</button>
                     </div>
                 </div>
             </div>
