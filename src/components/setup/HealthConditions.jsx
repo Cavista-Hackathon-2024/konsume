@@ -4,11 +4,11 @@ import konsume from "../../assets/konsume.png"
 
 const HealthConditions = () => {
     return (
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-between items-center mt-6 md:flex-row flex-col">
             <div>
 
                 <div className="font-jakarta">
-                    <h1 className="text-xl font-bold mt-4 ">Do you have any of these health conditions - Select all that applies.</h1>
+                    <h1 className="md:text-xl text-lg font-bold mt-4 ">Do you have any of these health conditions - Select all that applies.</h1>
                 </div>
                 <div className="flex flex-col gap-3">
 
@@ -26,7 +26,7 @@ const HealthConditions = () => {
                     <GoalCheckbox label="None" />
                 </div>
             </div>
-            <img src={konsume} alt="konsume" />
+            <img src={konsume} alt="konsume" className='md:w-[270px] w-[200px]'/>
         </div>
     )
 }

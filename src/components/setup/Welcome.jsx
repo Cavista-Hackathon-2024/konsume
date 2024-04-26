@@ -3,19 +3,19 @@ import dashboard_img from "../../assets/dashboard_img.png"
 
 const Welcome = () => {
     return (
-        <div>
-            <div className=" flex gap-5 mt-5">
+        <div className=" relative gap-3 flex flex-col">
+            <div className=" flex gap-3 mt-5 md:flex-row flex-col">
                 <h1 className=" font-bold">Welcome Seyi</h1>
                 <p>Let's begin your personalized wellness Journey </p>
             </div>
             <div className="flex items-center justify-between">
 
-                <div className="py-[19px] px-[44px] border-[3px] border-[#8C77EC] rounded-[3px]">
-                    <p className=" font-bold">To get started, please tell us a bit about yourself.<br />
+                <div className="md:py-[19px] py-[9.5px] md:px-[44px] px-[22px] border-[3px] border-[#8C77EC] rounded-[3px]">
+                    <p className=" text-xs md:font-bold">To get started, please tell us a bit about yourself.<br />
                         Your input will help us tailor recommendations just for you.</p>
                 </div>
 
-                <img src={dashboard_img} alt="dashboard" />
+                <img src={dashboard_img} alt="dashboard" className="w-[50px] md:w-[150px] absolute md:relative top-0 right-0"/>
             </div>
         </div>
     )

@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  return (
-    <div className=" h-[100vh]">
+    return (
+        <div className=" h-[100vh]">
             <div className="md:p-10 p-6">
                 <h1 className="md:text-3xl text-xl font-bold">Login to Konsume</h1>
                 <p className='md:text-xl text-sm mb-10'>Please provide your information to login</p>
@@ -21,12 +21,12 @@ const Login = () => {
                                 <input type="password" placeholder="Password" id="password" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                         </form>
-                            <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Login</button>
+                        <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Login</button>
                     </div>
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 export default Login

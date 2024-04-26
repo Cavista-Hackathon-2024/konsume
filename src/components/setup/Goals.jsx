@@ -8,10 +8,10 @@ const Goals = () => {
             <div>
 
                 <div className="font-jakarta">
-                    <h1 className="text-2xl font-bold mt-4 ">We are excited to know you better</h1>
+                    <h1 className="md:text-2xl text-lg font-bold mt-4 ">We are excited to know you better</h1>
                     <p className="mb-4">Tell us what your goals for signing up are.</p>
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col md:gap-3 gap-1">
 
                     <GoalCheckbox label="Lose Weight" />
                     <GoalCheckbox label="Gain Weight" />
@@ -24,7 +24,7 @@ const Goals = () => {
                     <GoalCheckbox label="Just to Eat Healthy" />
                 </div>
             </div>
-            <img src={stars} alt="stars" />
+            <img src={stars} alt="stars" className="md:block hidden"/>
         </div>
     )
 }
