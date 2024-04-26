@@ -13,7 +13,7 @@ const Goals = () => {
                 </div>
                 <div className="flex flex-col gap-3">
 
-                    <GoalCheckbox label="Lose Weight" />
+                    <GoalCheckbox label="Lose Weight"/>
                     <GoalCheckbox label="Gain Weight" />
                     <GoalCheckbox label="Maintain Weight" />
                     <GoalCheckbox label="Start a fitness journey" />

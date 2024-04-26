@@ -14,5 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['a
     log_in();       //call the reg_user function which has been imported from the functions.php file
 }
 
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "get_u_data"){
+    get_user_data();       //call the reg_user function which has been imported from the functions.php file
+}
+
 
 exit(); //exit the current script

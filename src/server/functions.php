@@ -18,7 +18,9 @@ function success(){
     exit();
 }
 
-
+/**
+ * function to register user to the database
+ */
 function reg_user(){
     /**
      * function to register user.
@@ -30,7 +32,7 @@ function reg_user(){
     $pwd = md5($_POST['pwd']); // hash the password using md5
 
 
-    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");
+    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");       //establish sql connection
     $ver_email_query = mysqli_query($db,"SELECT * FROM users WHERE email = '$email'"); // query to check if email exists
 
     if(!($ver_email_query)){
@@ -49,19 +51,23 @@ function reg_user(){
         }
         else{
             success(); // call success function
+            session_start();        //start a new session
+            $_SESSION['email'] = $email;
         }
         exit(); // exit the script
     }
 }
 
-//function to log user
+/**
+ * function to log user in
+ */
 function log_in(){
     //retrieve user data
     $isThrough = false;
     $email = $_POST['email'];
     $pwd = md5($_POST['pwd']);  //hash password
 
-    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");
+    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");       //establish sql connnection
 
     //verify if the email exists in the database
     $check_email_query = mysqli_query($db,"SELECT * FROM users WHERE email = '$email'");
@@ -80,6 +86,30 @@ function log_in(){
         }
         else{
             success();
+            session_start();        //start a new session
+            $_SESSION['email'] = $email;
         }
+    }
+}
+
+/**
+ * function to get user data
+ */
+function get_user_data(){
+    // echo $_SESSION['email'];
+
+    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");       //establish database connection
+
+    $email = "lanre2967@gmail.com";
+    //verify if the email exists in the database
+    $check_email_query = mysqli_query($db,"SELECT * FROM users WHERE email = '$email'");        //get useer data from database
+    if(mysqli_num_rows($check_email_query) > 0){        //ensure the data fetched exists by checking the number of rows returned
+        $assoc = mysqli_fetch_assoc($check_email_query);
+
+        unset($assoc['pwd']);
+        echo json_encode($assoc);
+        exit();
+        $_SESSION['name'] = $assoc['name'];
+        $_SESSION['email'] = $assoc['email'];
     }
 }

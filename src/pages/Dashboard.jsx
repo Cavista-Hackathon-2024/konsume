@@ -4,8 +4,11 @@ import Welcome from '../components/dashboard/Welcome'
 import BioData from '../components/dashboard/BioData'
 import Goals from '../components/dashboard/Goals'
 import HealthConditions from '../components/dashboard/HealthConditions'
+import getUserData from '../components/dashboard/getUserData'
+
 
 const Dashboard = () => {
+    console.log(getUserData());
     return (
         <div className="w-10/12 m-auto">
             <div className="md:p-10 p-6">

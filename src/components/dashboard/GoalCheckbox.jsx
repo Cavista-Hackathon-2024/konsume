@@ -1,6 +1,7 @@
 import React from 'react'
 
-const GoalCheckbox = ({ label }) => {
+
+const GoalCheckbox = ({ label}) => {
   function toggleCheckbox() {
     var checkbox = document.getElementById("myCheckbox");
     checkbox.checked = !checkbox.checked;
