@@ -2,7 +2,7 @@ import React from 'react'
 
 const SignUp = () => {
     return (
-        <div className="bg-[#EDFAE7] font-[poppins] h-[100vh]">
+        <div className=" h-[100vh]">
             <div className="md:p-10 p-6">
 
                 <h1 className="md:text-3xl text-xl font-bold">Sign Up to Konsum</h1>
@@ -11,7 +11,7 @@ const SignUp = () => {
                     <div className="signup_img"></div>
                     <div className="signup_container md:p-[50px]">
 
-                        <form action="" className="signup_content grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-2 md:gap-y-16 gap-y-7">
+                        <form action="" className="signup_content grid sm:grid-cols-2 grid-cols-1 md:gap-10 gap-2 md:gap-y-16 gap-y-7">
                             <div className="grid ">
                                 <label htmlFor="name" className=" text-sm md:text-xl font-bold">Name</label>
                                 <input type="text" placeholder="Name" id="name" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" />

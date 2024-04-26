@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import SignUp from './pages/SignUp'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <SignUp />
-    </>
+    <div className="bg-[#EDFAE7] font-[poppins]">
+      <Dashboard />
+    </div>
   )
 }
 
