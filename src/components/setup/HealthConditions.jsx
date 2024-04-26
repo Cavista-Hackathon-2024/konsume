@@ -1,6 +1,7 @@
 import React from 'react'
 import GoalCheckbox from './GoalCheckbox'
 import konsume from "../../assets/konsume.png"
+import HealthCheckboxes from './HealthCheckboxes'
 
 const HealthConditions = () => {
     return (
@@ -12,18 +13,18 @@ const HealthConditions = () => {
                 </div>
                 <div className="flex flex-col gap-3">
 
-                    <GoalCheckbox label="Diabetes" />
-                    <GoalCheckbox label="Hypertension" />
-                    <GoalCheckbox label="Food allergies" />
-                    <GoalCheckbox label="Digestive issues" />
-                    <GoalCheckbox label="Cholesterol management" />
-                    <GoalCheckbox label="Vegetarian/vegan preferences" />
-                    <GoalCheckbox label="Gluten sensitivity" />
-                    <GoalCheckbox label="Lactose intolerance" />
-                    <GoalCheckbox label="Nut allergies" />
-                    <GoalCheckbox label="Fish and Shellfish allergies (Shrimps, Tuna, Salmon, Crab, e.t.c)" />
-                    <GoalCheckbox label="Grain and Legume-Based Allergies (Wheat, Soy,  e.t.c)" />
-                    <GoalCheckbox label="None" />
+                    <HealthCheckboxes label="Diabetes" />
+                    <HealthCheckboxes label="Hypertension" />
+                    <HealthCheckboxes label="Food allergies" />
+                    <HealthCheckboxes label="Digestive issues" />
+                    <HealthCheckboxes label="Cholesterol management" />
+                    <HealthCheckboxes label="Vegetarian/vegan preferences" />
+                    <HealthCheckboxes label="Gluten sensitivity" />
+                    <HealthCheckboxes label="Lactose intolerance" />
+                    <HealthCheckboxes label="Nut allergies" />
+                    <HealthCheckboxes label="Fish and Shellfish allergies (Shrimps, Tuna, Salmon, Crab, e.t.c)" />
+                    <HealthCheckboxes label="Grain and Legume-Based Allergies (Wheat, Soy,  e.t.c)" />
+                    <HealthCheckboxes label="None" />
                 </div>
             </div>
             <img src={konsume} alt="konsume" className='md:w-[270px] w-[200px]'/>

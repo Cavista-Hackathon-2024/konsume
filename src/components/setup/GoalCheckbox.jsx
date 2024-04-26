@@ -1,16 +1,32 @@
-import React from 'react'
+import React from 'react';
+import { useContext, useEffect } from 'react';
+import SetupContext from '../../context/SetupContext';
 
 const GoalCheckbox = ({ label }) => {
-  function toggleCheckbox() {
-    var checkbox = document.getElementById("myCheckbox");
-    checkbox.checked = !checkbox.checked;
+  const {userGoal, setUserGoal} = useContext(SetupContext);
+
+  const getValue = (e) => {
+    setUserGoal(e.target.value);
+  
+    console.log('Selected label:', userGoal);
   }
+  useEffect(() => {
+    
+  }, [userGoal])
+  
   return (
     <div className="">
-      <label for="checkbox-in-form" class="flex p-3 cursor-pointer  rounded-md text-sm w-fit items-center">
-        <input type="checkbox" class="w-5 h-5 appearance-none cursor-pointer border border-[#FFC501] rounded-md mr-2 checked:bg-no-repeat checked:bg-center checked:border-[#FFC501] checked:bg-[#FFC501]" id="checkbox-in-form" />
-        <span class=" text-lg text-gray-600 ml-2 font-bold font-jakarta ">{label}</span>
-      </label>
+      <div class="flex items-center me-4">
+        <input 
+        id="inline-radio" 
+        type="radio" 
+        onChange={getValue} 
+        value={label} 
+        name="inline-radio-group" 
+        checked={userGoal === label}
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" />
+        <label for="inline-radio" class="text-lg text-gray-600 ml-2 font-bold font-jakarta">{label}</label>
+      </div>
     </div>
   )
 }

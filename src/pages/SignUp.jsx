@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     // State variables to store input values
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     // Function to balidate email
     const isValidEmail = (email) => {
@@ -62,17 +66,21 @@ const SignUp = () => {
         if(!isValidEmail(email)){
             isThrough = false;
             console.log("wrond email")
+            toast.error("Invalid email address");
             //call error for invalid email-
         }
         if(password.length < 4){
-            isThrough = false
-            console.log("wrong pwd")
+            isThrough = false;
+            console.log("wrong pwd");
+            toast.error("Password must be 4 characters or longer");
             //call error and tell user that password is must be more than 4 characters
         }
         console.log(isThrough);
 
         if(isThrough){
-            createAccount(name,email,password)      //call the create account function
+            toast.success("Account created successfully");
+            createAccount(name,email,password); 
+            navigate("/dashboard");
         }
         
     };
