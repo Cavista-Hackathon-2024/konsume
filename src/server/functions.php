@@ -2,8 +2,6 @@
 header("Access-Control-Allow-Origin: *");
 
 
-$db = mysqli_connect("localhost","root","","cavista_healthcare_app");
-
 function dbErr(){
     /**
      * notify that there is an error connecting to database and exit the script.
@@ -45,7 +43,7 @@ function reg_user(){
     }
     else{
         //insert data into the database
-        $insert_query = mysqli_query($db,"INSERT INTO users(name,email) VALUES('$name','$email')");
+        $insert_query = mysqli_query($db,"INSERT INTO users(name,email,pwd) VALUES('$name','$email','$pwd')");
         if(!($insert_query)){
             dbErr(); // call db error function 
         }
@@ -63,17 +61,21 @@ function log_in(){
     $email = $_POST['email'];
     $pwd = md5($_POST['pwd']);  //hash password
 
+    $db = mysqli_connect("localhost","root","","cavista_healthcare_app");
+
     //verify if the email exists in the database
     $check_email_query = mysqli_query($db,"SELECT * FROM users WHERE email = '$email'");
     if(!($check_email_query)){
         dbErr();    //call db error function
     }
     if (mysqli_num_rows($check_email_query) == 0){
-        dbErr();    //call deb error function
+        echo "null_mail";
+        exit(); // echo null_email back to frontend and exit code if email is not found in the database
     }
     else{
-        if ($pwd != mysqli_fetch_assoc($check_email_query)){
-            echo "incorrect password"; // return incorrct password if password is incorrect
+        $assoc = mysqli_fetch_assoc($check_email_query);
+        if ($pwd != $assoc['pwd']){
+            echo "wrong_pwd"; // return incorrct password if password is incorrect
             exit();
         }
         else{
