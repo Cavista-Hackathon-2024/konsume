@@ -10,7 +10,7 @@ export const SetupProvider = ({children}) => {
     const [gender, setGender] = useState('');
     const [weight, setWeight] = useState('');
     return (
-        <SetupContext.Provider value={{userGoal, setUserGoal, userDiseases, setUserDiseases, age, gender, weight, setAge, setGender, setWeight}}>
+        <SetupContext.Provider value={{userGoal, setUserGoal, userDiseases, setUserDiseases,name, age, gender, weight, setAge, setGender, setWeight, setName}}>
             {children}
         </SetupContext.Provider>
     )
