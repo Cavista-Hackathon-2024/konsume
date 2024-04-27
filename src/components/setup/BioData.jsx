@@ -3,7 +3,7 @@ import SetupContext from '../../context/SetupContext';
 
 const BioData = () => {
     // State hooks for input values
-    const {height,gender, age, weight, setAge, setHeight, setGender, setWeight} = useContext(SetupContext);
+    const {height,gender, age, weight, setAge, setHeight, setGender, setWeight, name, setName} = useContext(SetupContext);
 
     // Function to log input values
     const logValues = () => {
@@ -20,14 +20,14 @@ const BioData = () => {
                 <div className="signup_container md:p-[50px]">
                     <form className="signup_content grid sm:grid-cols-2 grid-cols-1 md:gap-10 gap-2 md:gap-y-16 gap-y-7">
                         <div className="grid">
-                            <label htmlFor="height" className="text-sm md:text-xl font-bold">Height(Cm)</label>
+                            <label htmlFor="name" className="text-sm md:text-xl font-bold">Name</label>
                             <input
-                                type="number"
-                                id="height"
-                                placeholder="Height"
+                                type="name"
+                                id="name"
+                                placeholder="Name"
                                 className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
-                                value={height}
-                                onChange={(e) => setHeight(e.target.value)}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                             />
                         </div>
                         <div className="grid">

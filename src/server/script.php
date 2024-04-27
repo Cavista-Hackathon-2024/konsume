@@ -5,7 +5,7 @@ require('functions.php');
 
 
 //ensure the request type is a post request and check if all necessary variables are provided before proceeding to ensure validity.
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "signup" && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['pwd'])){        //ensure the request method is post and all needed varianles are present
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "signup"){        //ensure the request method is post and all needed varianles are present
     reg_user();     //call the reg_user function which has been imported from the functions.php file
 }
 
