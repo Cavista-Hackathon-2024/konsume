@@ -8,6 +8,7 @@ import gemini from '../../https/gemini'
 import { toast } from 'react-toastify'
 import SetupContext from '../../context/SetupContext'
 import VanillaTilt from 'vanilla-tilt';
+import { Link } from 'react-router-dom'
 
 const DashboardBody = () => {
     const { name, age, weight, userGoal, userDiseases } = useContext(SetupContext);
@@ -110,22 +111,25 @@ const DashboardBody = () => {
                     </div>
                 </div>
             </div>
-            <div className='grid grid-rows-2 gap-2'>
-                <div className='bg-[#B0D2C1] p-4 rounded-2xl js-tilt'>
-                    <div className='flex justify-between items-center mb-5'>
-                        <p className=' font-bold text-xs text-[#ED5E3B]'>Try Out Scanner</p>
-                        <img src={scanner} alt="scanner" />
-                    </div>
-                    <p>Upload a food picture, and our AI analyzes it for nutritional info, allergens, and health goal alignment.</p>
-                </div>
 
-                <div className='border-[2px] border-[#FFC400] p-4 rounded-2xl js-tilt'>
+            <div className='grid grid-rows-2 gap-2 cursor-pointer'>
+                <Link to="/scanner">
+                    <div className='bg-[#B0D2C1] p-4 rounded-2xl js-tilt h-full'>
+                        <div className='flex justify-between items-center mb-5'>
+                            <p className=' font-bold text-xs text-[#ED5E3B]'>Try Out Scanner</p>
+                            <img src={scanner} alt="scanner" />
+                        </div>
+                        <p>Upload a food picture, and our AI analyzes it for nutritional info, allergens, and health goal alignment.</p>
+                    </div>
+                </Link>
+
+                <div className='border-[2px] border-[#FFC400] p-4 rounded-2xl js-tilt cursor-pointer'>
                     <div className='flex justify-between items-center mb-5'>
                         <p className=' font-bold text-base'>Progress Tracker</p>
                         <img src={progress} alt="progress" />
                     </div>
-                    <p>Track your meals, goals and workout progress? <br/>
-Try out our Beta Project tracker coming Soon!</p>
+                    <p>Track your meals, goals and workout progress? <br />
+                        Try out our Beta Project tracker coming Soon!</p>
                 </div>
             </div>
 
