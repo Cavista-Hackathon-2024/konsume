@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import star from "../../assets/star2.png"
 import star3 from "../../assets/star3.png"
 import star4 from "../../assets/star4.png"
+import gemini from '../../https/gemini'
+import { toast } from 'react-toastify'
+import SetupContext from '../../context/SetupContext'
 
 const DashboardBody = () => {
+    const {name, age, weight, userGoal, userDiseases } = useContext(SetupContext);
+    // const stringdisease = userDiseases.join(, )
+    const qq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. Please give me like 3 or more recommended protein sources`;
+    const [query, setQuery] = useState(qq);
+    const [answer, setAnswer] = useState();
+    useEffect(() => {
+        makeRequest();
+      }, [])
+    
+      const makeRequest = async () => {
+        try {
+          console.log('hii');
+          const {data} = await gemini.post("/gemini-pro:generateContent", {"contents":[{"parts":[{"text": query}]}]})
+          setAnswer(data.candidates[0].content.parts[0].text);
+          console.log(data);
+          console.log('done');
+          console.log(query);
+        } catch (error) {
+          toast.error(error);
+        }
+      }
     return (
         <div className='grid grid-cols-3'>
             <div className='grid grid-rows-2 gap-2'>
@@ -68,10 +92,7 @@ const DashboardBody = () => {
                         <img src={star4} alt="star" />
                     </div>
                     <ul className=' text-xs font-medium'>
-                        <li>Lean meats (chicken, turkey, fish)</li>
-                        <li>Eggs</li>
-                        <li>Dairy (if not lactose intolerant)</li>
-                        <li>Plant-based proteins (tofu, lentils, beans)</li>
+                        {answer}
                     </ul>
                 </div>
             </div>
