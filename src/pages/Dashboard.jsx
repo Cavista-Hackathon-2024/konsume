@@ -1,31 +1,20 @@
-import React from 'react'
-import backbtn from "../assets/back_btn.png"
-import Welcome from '../components/dashboard/Welcome'
-import BioData from '../components/dashboard/BioData'
-import Goals from '../components/dashboard/Goals'
-import HealthConditions from '../components/dashboard/HealthConditions'
-import getUserData from '../components/dashboard/getUserData'
-
+import React, { useContext } from 'react'
+import Sidebar from '../components/dashboard/Sidebar'
+import DashboardHead from '../components/dashboard/DashboardHead'
+import DashboardBody from '../components/dashboard/DashboardBody'
+import SetupContext from '../context/SetupContext'
 
 const Dashboard = () => {
-    console.log(getUserData());
-    return (
-        <div className="w-10/12 m-auto">
-            <div className="md:p-10 p-6">
-
-                <img src={backbtn} alt="backbtn" />
-                <Welcome />
-                <BioData />
-                <Goals />
-                <HealthConditions />
-
-                <div className="flex flex-col items-center gap-4">
-                <p className="text-[#8C77EC] font-bold">Watch as you make progress towards your health goals!"</p>
-                <button className="bg-[#8DCF38] px-[84px] py-[7px] text-[#1E5E08] rounded-[34px]">Continue</button>
-                </div>
-            </div>
+    const {userGoals, userDiseases} = useContext(SetupContext);
+  return (
+    <div>
+        <Sidebar />
+        <div className='ml-[280px] mr-[20px] gap-5 flex flex-col'>
+            <DashboardHead />
+            <DashboardBody />
         </div>
-    )
+    </div>
+  )
 }
 
 export default Dashboard
