@@ -4,7 +4,7 @@ export const dashboardhero = [
         text: "Wishing you success on your weight loss journey! We're here to support you. We've curated personalized recommendations on nutrition to help you achieve your weight loss goals effectively"
     },
     {
-        title: "Gain weight",
+        title: "Gain Weight",
         text: "Best of luck with your weight gain journey! We're here to support you. We've curated personalized recommendations on nutrition to help you gain weight in a healthy and sustainable way."
     },
     {
@@ -24,7 +24,7 @@ export const dashboardhero = [
         text: "Best of luck in managing your stress levels! We're here to support you. We've curated personalized recommendations on nutrition to help you combat stress and promote overall well-being."
     },
     {
-        title: "Maintain weight",
+        title: "Maintain Weight",
         text: " Best of luck in maintaining your weight! We're here to support you. We've curated personalized recommendations on nutrition to help you maintain a healthy weight and lifestyle."
     },
     {
