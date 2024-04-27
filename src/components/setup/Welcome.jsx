@@ -4,7 +4,9 @@ import getUserData from './getUserData'
 
 export var diseases = []         //initialise and export an empty array for the diseases so it can be accessed by the diseases component
 const Welcome = () => {
-    let userFirstName = "" // getUserData()["name"].split(" ")[0];        //get the user first name by splitting the user name and retrieving the first name
+    // console.log(getUserData());
+    // console.log(getUserData()["name"]);
+    let userFirstName = "" //getUserData()["name"].split(" ")[0];        //get the user first name by splitting the user name and retrieving the first name
     return (
         <div className=" relative gap-3 flex flex-col">
             <div className=" flex gap-3 mt-5 md:flex-row flex-col">

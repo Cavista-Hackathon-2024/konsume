@@ -10,6 +10,15 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
+    /**
+     * code to check if the name contains only letters and not numbers and unnecessary signs
+     */
+    const isStringValid = (str) => {
+        const regex = /^[a-zA-Z\s]+$/;
+
+        return regex.test(str);
+    }
+
     // Function to balidate email
     const isValidEmail = (email) => {
         // Regular expression pattern for validating email addresses
@@ -63,6 +72,11 @@ const SignUp = () => {
             toast.error('Password must be at least 4 characters.');
             isThrough = false;
         }
+        if(!isStringValid(name)){
+            toast.error('Name can only contain letters');
+            isThrough = false;
+        }
+    
         if(isThrough) validateUser(name,email,password)
     }
     // Function to validate user inputs

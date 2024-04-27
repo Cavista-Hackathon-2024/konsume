@@ -15,7 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['a
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "get_u_data"){
-    get_user_data();       //call the reg_user function which has been imported from the functions.php file
+    get_user_data();       //call the get_user_data function which has been imported from the functions.php file
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "put_add_info" && isset($_POST['name']) && isset($_POST['weight']) && isset($_POST['userGoal']) && isset($_POST['userDiseases'])){
+    put_add_info();       //call the get_user_data function which has been imported from the functions.php file
 }
 
 
