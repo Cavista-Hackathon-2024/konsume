@@ -13,15 +13,15 @@ const Goals = () => {
                 </div>
                 <div className="flex flex-col md:gap-3 gap-1">
 
-                    <GoalCheckbox label="Lose Weight" />
-                    <GoalCheckbox label="Gain Weight" />
-                    <GoalCheckbox label="Maintain Weight" />
-                    <GoalCheckbox label="Start a fitness journey" />
-                    <GoalCheckbox label="Improve Muscle tone" />
-                    <GoalCheckbox label="Boost Energy Levels" />
-                    <GoalCheckbox label="Manage Stress" />
-                    <GoalCheckbox label="Improve Cardiovascular Health" />
-                    <GoalCheckbox label="Just to Eat Healthy" />
+                    <GoalCheckbox label="Lose Weight" data= "lose_Weight"/>
+                    <GoalCheckbox label="Gain Weight" data= "gain_Weight"/>
+                    <GoalCheckbox label="Maintain Weight" data= "maintain_Weight"/>
+                    <GoalCheckbox label="Start a fitness journey" data= "fitness"/>
+                    <GoalCheckbox label="Improve Muscle tone" data= "muscle_tone"/>
+                    <GoalCheckbox label="Boost Energy Levels" data= "boost_energy_level"/>
+                    <GoalCheckbox label="Manage Stress" data= "manage_stress"/>
+                    <GoalCheckbox label="Improve Cardiovascular Health" data= "cardio_health"/>
+                    <GoalCheckbox label="Just to Eat Healthy" data= "eat_healthy"/>
                 </div>
             </div>
             <img src={stars} alt="stars" className="md:block hidden"/>

@@ -2,13 +2,11 @@ import React from 'react';
 import { useContext, useEffect } from 'react';
 import SetupContext from '../../context/SetupContext';
 
-const GoalCheckbox = ({ label }) => {
+const GoalCheckbox = ({ label,data }) => {
   const {userGoal, setUserGoal} = useContext(SetupContext);
 
   const getValue = (e) => {
     setUserGoal(e.target.value);
-  
-    console.log('Selected label:', userGoal);
   }
   useEffect(() => {
     
