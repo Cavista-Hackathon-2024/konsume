@@ -5,52 +5,91 @@ import star4 from "../../assets/star4.png"
 import gemini from '../../https/gemini'
 import { toast } from 'react-toastify'
 import SetupContext from '../../context/SetupContext'
+import VanillaTilt from 'vanilla-tilt';
 
 const DashboardBody = () => {
-    const {name, age, weight, userGoal, userDiseases } = useContext(SetupContext);
+    const { name, age, weight, userGoal, userDiseases } = useContext(SetupContext);
     // const stringdisease = userDiseases.join(, )
-    const qq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. Please give me like 3 or more recommended protein sources`;
+    const qq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. Please give me like 3 or more recommended protein sources. Not more than 30 words`;
+    const qq2 = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. Please give me like 3 or more types of food i should avoid. Not more than 30 words`;
+    const proq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. What is the recommended range of percent of protein i should eat, it must be exactly in this format i.e 30-45%`;
+    const carbq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. What is the recommended range of percent of fats i should eat, it must be exactly in this format i.e 30-45%`;
+    const fatq = `My name is ${name} I am ${age} years old and ${weight}kg, I am working on ${userGoal}, my health conditons are ${userDiseases.join(', ')}. What is the recommended range of percent of carbs i should eat, it must be exactly in this format i.e 30-45%`;
     const [query, setQuery] = useState(qq);
+    const [query2, setQuery2] = useState(qq2);
+    const [query3, setQuery3] = useState(proq);
+    const [query4, setQuery4] = useState(carbq);
+    const [query5, setQuery5] = useState(fatq);
+
     const [answer, setAnswer] = useState();
+    const [answer2, setAnswer2] = useState();
+    
+    const [proteinPercent, setProteinPercent] = useState();
+    const [carbPercent, setCarbPercent] = useState();
+    const [fats, setFats] = useState();
     useEffect(() => {
         makeRequest();
-      }, [])
-    
-      const makeRequest = async () => {
+        makeRequestAvoidFood();
+    }, [])
+
+    const makeRequest = async () => {
         try {
-          console.log('hii');
-          const {data} = await gemini.post("/gemini-pro:generateContent", {"contents":[{"parts":[{"text": query}]}]})
-          setAnswer(data.candidates[0].content.parts[0].text);
-          console.log(data);
-          console.log('done');
-          console.log(query);
+            console.log('hii');
+            const { data } = await gemini.post("/gemini-pro:generateContent", { "contents": [{ "parts": [{ "text": query }] }] })
+            setAnswer(data.candidates[0].content.parts[0].text);
+            console.log(data);
+            console.log('done');
+            console.log(query);
         } catch (error) {
-          toast.error(error);
+            toast.error(error);
         }
-      }
+    }
+    const makeRequestAvoidFood = async () => {
+        try {
+            console.log('hii');
+            const { data } = await gemini.post("/gemini-pro:generateContent", { "contents": [{ "parts": [{ "text": query2 }] }] });
+            const protein = await gemini.post("/gemini-pro:generateContent", { "contents": [{ "parts": [{ "text": query3 }] }] });
+            const carbs = await gemini.post("/gemini-pro:generateContent", { "contents": [{ "parts": [{ "text": query4 }] }] });
+            const fats = await gemini.post("/gemini-pro:generateContent", { "contents": [{ "parts": [{ "text": query5 }] }] });
+            setAnswer2(data.candidates[0].content.parts[0].text);
+            setProteinPercent(protein?.data.candidates[0].content.parts[0].text);
+            setCarbPercent(carbs?.data.candidates[0].content.parts[0].text);
+            setFats(fats?.data.candidates[0].content.parts[0].text);
+            console.log(data);
+            console.log('done');
+            console.log(query);
+        } catch (error) {
+            toast.error(error);
+        }
+    }
+
+    
+
+    const element = document.querySelectorAll(".js-tilt");
+    VanillaTilt.init(element);
     return (
         <div className='grid grid-cols-3'>
             <div className='grid grid-rows-2 gap-2'>
-                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl'>
+                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl js-tilt'>
                     <div className='flex justify-between items-center'>
                         <p className=' font-bold text-xs text-white'>Foods to Consume <br />(Percentage of Daily Intake)</p>
                         <img src={star} alt="star" />
                     </div>
                     <div className='justify-between flex bg-[#D2E1F9] p-3 rounded-lg'>
                         <p className=' font-normal text-xs'>Protein</p>
-                        <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
+                        <p className=' font-bold text-xs text-[#FFC501]'>{proteinPercent}</p>
                     </div>
-                    <div className='justify-between flex bg-[#D2E1F9] p-3 rounded-lg'>
-                        <p className=' font-normal text-xs'>Protein</p>
-                        <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
+                    <div className='justify-between flex bg-[#D2F9E8] p-3 rounded-lg'>
+                        <p className=' font-normal text-xs'>Carbohydrates</p>
+                        <p className=' font-bold text-xs text-[#FFC501]'>{carbPercent}</p>
                     </div>
-                    <div className='justify-between flex bg-[#D2E1F9] p-3 rounded-lg'>
-                        <p className=' font-normal text-xs'>Protein</p>
-                        <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
+                    <div className='justify-between flex bg-[#F7F9D2] p-3 rounded-lg'>
+                        <p className=' font-normal text-xs'>Healthy Fats</p>
+                        <p className=' font-bold text-xs text-[#FFC501]'>{fats}</p>
                     </div>
                 </div>
 
-                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl'>
+                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl js-tilt'>
                     <div className='flex justify-between items-center'>
                         <p className=' font-bold text-xs text-white'>Foods to Consume <br />(Percentage of Daily Intake)</p>
                         <img src={star} alt="star" />
@@ -59,12 +98,12 @@ const DashboardBody = () => {
                         <p className=' font-normal text-xs'>Protein</p>
                         <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
                     </div>
-                    <div className='justify-between flex bg-[#D2E1F9] p-3 rounded-lg'>
-                        <p className=' font-normal text-xs'>Protein</p>
+                    <div className='justify-between flex bg-[#D2F9E8] p-3 rounded-lg'>
+                        <p className=' font-normal text-xs'>Carbohydrates</p>
                         <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
                     </div>
-                    <div className='justify-between flex bg-[#D2E1F9] p-3 rounded-lg'>
-                        <p className=' font-normal text-xs'>Protein</p>
+                    <div className='justify-between flex bg-[#F7F9D2] p-3 rounded-lg'>
+                        <p className=' font-normal text-xs'>Healthy Fats</p>
                         <p className=' font-bold text-xs text-[#FFC501]'>30-45%</p>
                     </div>
                 </div>
@@ -73,26 +112,23 @@ const DashboardBody = () => {
                 <button className='p-7'>Scan Image</button>
             </div>
             <div className='grid grid-rows-2 gap-2'>
-                <div className='bg-[#D6FBC4] p-4 rounded-2xl'>
+                <div className='bg-[#D6FBC4] p-4 rounded-2xl js-tilt'>
                     <div className='flex justify-between items-center mb-5'>
                         <p className=' font-bold text-xs text-[#8C77EC]'>Recommended Protein Sources</p>
                         <img src={star3} alt="star" />
                     </div>
                     <ul className=' text-xs font-medium'>
-                        <li>Lean meats (chicken, turkey, fish)</li>
-                        <li>Eggs</li>
-                        <li>Dairy (if not lactose intolerant)</li>
-                        <li>Plant-based proteins (tofu, lentils, beans)</li>
+                        {answer}
                     </ul>
                 </div>
 
-                <div className='bg-[#FF004D] p-4 rounded-2xl'>
+                <div className='bg-[#FF004D] p-4 rounded-2xl js-tilt'>
                     <div className='flex justify-between items-center mb-5'>
                         <p className=' font-bold text-xs'>Foods to avoid</p>
                         <img src={star4} alt="star" />
                     </div>
                     <ul className=' text-xs font-medium'>
-                        {answer}
+                        {answer2}
                     </ul>
                 </div>
             </div>
