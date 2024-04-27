@@ -32,7 +32,7 @@ const Setup = () => {
                         }
                         else{
                             toast.success(data)    //send to dashboard page in sign in was sucessful
-                            navigate(dash)
+                            navigate(dashboard)
                         }
                     }
                 }
@@ -57,7 +57,7 @@ const Setup = () => {
                 <HealthConditions />
 
                 <div className="flex flex-col items-center gap-4">
-                    <p className="text-[#8C77EC] font-bold ">Watch as you make progress towards your health goals!"</p>
+                    <p className="text-[#8C77EC] font-bold ">Watch as you make progress towards your health goals!</p>
                     <button className="bg-[#8DCF38] px-[84px] py-[7px] text-[#1E5E08] rounded-[34px]" onClick={handleValidation}>Continue</button>
                 </div>
             </div>
