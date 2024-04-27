@@ -3,7 +3,7 @@ import SetupContext from '../../context/SetupContext';
 
 const BioData = () => {
     // State hooks for input values
-    const {name,gender, age, weight, setAge, setName, setGender} = useContext(SetupContext);
+    const {name,gender, age, weight, setAge, setName, setGender, setWeight} = useContext(SetupContext);
 
     // Function to log input values
     const logValues = () => {
@@ -50,8 +50,8 @@ const BioData = () => {
                                 value={gender}
                                 onChange={(e) => setGender(e.target.value)}
                             >
-                            <option> Male </option>
-                            <option> Female </option>
+                            <option value="male"> Male </option>
+                            <option value="female"> Female </option>
                             </select>
                         </div>
                         <div className="grid">
