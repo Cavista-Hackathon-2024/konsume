@@ -6,13 +6,18 @@ import Goals from '../components/setup/Goals'
 import HealthConditions from '../components/setup/HealthConditions'
 import SetupContext from '../context/SetupContext'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 const Setup = () => {
-    const {userGoal, setUserGoal, userDiseases, setUserDiseases, name, age, weight} = useContext(SetupContext);
+    const { userGoal, setUserGoal, userDiseases, setUserDiseases, name, age, weight } = useContext(SetupContext);
 
     const handleValidation = () => {
-        console.log(userGoal,userDiseases,name,age,weight);
-
+        console.log(userGoal, userDiseases, name, age, weight);
+        if (name && age && weight && userGoal && userDiseases) {
+            navigate("/dashboard");
+        } else {
+            toast.error("Please complete all form details")
+        }
     }
     const navigate = useNavigate();
     return (
