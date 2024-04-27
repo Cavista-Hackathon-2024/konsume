@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 
 
 
@@ -9,7 +10,11 @@ function getUserData(){
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 let data = xhr.response; //assign response to variable
-                userData = JSON.parse(data);
+                try {
+                    userData = JSON.parse(data);
+                } catch (error) {
+                    toast.error("Unexpected response from database");       //try to decode json and return error if encounter error while processing
+                }
             }
         }
     };

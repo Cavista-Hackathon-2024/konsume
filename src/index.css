@@ -41,3 +41,19 @@
 .font-jakarta{
   font-family: "Plus Jakarta Sans", sans-serif;
 }
+
+input[type="radio"]:focus {
+  outline: none; /* Remove default focus outline */
+}
+
+/* Custom focus style for radio button */
+input[type="radio"]:focus::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid #007bff; /* Change border color as needed */
+  border-radius: 50%; /* Make it fully rounded */
+}

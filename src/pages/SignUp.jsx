@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     // State variables to store input values
@@ -6,7 +8,9 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    // Function to validate email
+    const navigate = useNavigate();
+
+    // Function to balidate email
     const isValidEmail = (email) => {
         // Regular expression pattern for validating email addresses
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,49 +18,78 @@ const SignUp = () => {
     }
 
     // Function to create account
-    const createAccount = () => {
-        // Send request to backend
-        // You can use Fetch API or Axios for sending HTTP requests
-        // Example using Fetch API:
-        fetch('http://localhost/Cavista Project/konsume/konsume/src/server/script.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `action=signup&name=${name}&email=${email}&pwd=${password}`,
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            // Handle response from backend
-            // You can update state or show a message to the user based on the response
-        })
-        .catch(error => {
-            console.error('Error:', error);
+    const createAccount = (name,email,password) => {
+
+        //send asynchronous request to the php file
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    let data = xhr.response;
+                    // check if data is equal to true to telll if user sign up was sucessful
+                    if(data != true){
+                        toast.error(data);      //throw an error if the sign up is not sucessful
+                        console.error(data);
+                    }
+                    else{
+                        navigate("/setup");     //send to dashboard page if sign up was sucessful
+                    }
+                }
+            }
+        };
+        xhr.onerror = function () {
+            toast.error('Request failed. Network error');
             // Handle error
-        });
+        };
+        xhr.send(`action=signup&name=${name}&email=${email}&pwd=${password}`);
     }
 
     // Function to handle form submission
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        let isThrough = true;
         // Validate user inputs
         if (name.length === 0) {
-            console.log('Name is required.');
-            return;
+            toast.error('Name is required.');
+            isThrough = false;
         }
         if (!isValidEmail(email)) {
-            console.log('Invalid email.');
-            return;
+            toast.error('Invalid email.');
+            isThrough = false;
         }
         if (password.length < 4) {
-            console.log('Password must be at least 4 characters.');
-            return;
+            toast.error('Password must be at least 4 characters.');
+            isThrough = false;
         }
+        if(isThrough) validateUser(name,email,password)
+    }
+    // Function to validate user inputs
+    const validateUser = (name, email, password) => {
+        // Access input values and perform validation
 
-        // If inputs are valid, create account
-        createAccount();
+        let isThrough = true; //variable to check for potential erros while processing user data
+        if(name.length < 1){
+            isThrough = false;
+            //call error for no name
+        }
+        if(!isValidEmail(email)){
+            isThrough = false;
+            toast.error("Invalid email address");
+            //call error for invalid email-
+        }
+        if(password.length < 4){
+            isThrough = false;
+            toast.error("Password must be 4 characters or longer");
+            //call error and tell user that password is must be more than 4 characters
+        }
+        console.log(isThrough);
+
+        if(isThrough){
+            createAccount(name,email,password); 
+        }
+        
     };
 
     return (
