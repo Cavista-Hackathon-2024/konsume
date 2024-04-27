@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 import SetupContext, { SetupProvider } from './context/SetupContext'
 import Dashboard from './pages/Dashboard'
+import Scanner from './pages/Scanner'
 
 function App() {
 
@@ -29,6 +30,11 @@ function App() {
           <Route path='/dashboard' element={
             <SetupProvider>
               <Dashboard />
+            </SetupProvider>
+          }/>
+          <Route path='/scanner' element={
+            <SetupProvider>
+              <Scanner />
             </SetupProvider>
           }/>
           
