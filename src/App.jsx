@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 import SetupContext, { SetupProvider } from './context/SetupContext'
+import Dashboard from './pages/Dashboard'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Setup />
           </SetupProvider>
           }/>
+          <Route path='/dashboard' element={<Dashboard />}/>
           
        </Routes>
      </BrowserRouter>
