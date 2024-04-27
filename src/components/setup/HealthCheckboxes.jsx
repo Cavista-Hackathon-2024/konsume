@@ -17,14 +17,14 @@ const HealthCheckboxes = ({label}) => {
         console.log(userDiseases);
     }
   return (
-    <label for="checkbox-in-form" class="flex p-3 cursor-pointer  rounded-md text-sm w-fit items-center">
+    <label htmlFor="checkbox-in-form" className="flex p-3 cursor-pointer  rounded-md text-sm w-fit items-center">
         <input 
         onChange={handleCheckbox}
         checked={userDiseases.includes(label)}
         type="checkbox" 
         value={label}
-        class="w-5 h-5 appearance-none cursor-pointer border border-[#FFC501] rounded-md mr-2 checked:bg-no-repeat checked:bg-center checked:border-[#FFC501] checked:bg-[#FFC501]" id="checkbox-in-form" />
-        <span class=" text-lg text-gray-600 ml-2 font-bold font-jakarta ">{label}</span>
+        className="w-5 h-5 appearance-none cursor-pointer border border-[#FFC501] rounded-md mr-2 checked:bg-no-repeat checked:bg-center checked:border-[#FFC501] checked:bg-[#FFC501]" id="checkbox-in-form" />
+        <span className=" text-lg text-gray-600 ml-2 font-bold font-jakarta ">{label}</span>
       </label>
   )
 }

@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import SetupContext from '../../context/SetupContext';
 
 const ScannerBody = () => {
     const API_KEY = import.meta.env.VITE_GEMINI_KEY;
@@ -8,7 +9,8 @@ const ScannerBody = () => {
     const [image, setImage] = useState(null);
   const [bitImage, setBitImage] = useState('');
   const [result, setResult] = useState('');
-  const [queryText, setQueryText] = useState('');
+  const {userGoal, setUserGoal, userDiseases, setUserDiseases,name, age, gender, weight, setAge, setGender, setWeight, setName} = useContext(SetupContext);
+  const [queryText, setQueryText] = useState(`Whats in this image? Is it a food? What is in this food? with my information like my goal of ${userGoal}, health conditions i have like ${userDiseases.join(', ')}`);
 
   const safetySettings = [
     {
@@ -64,7 +66,7 @@ const ScannerBody = () => {
   const handleRecognize = async () => {
     const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
     const result = await model.generateContent([
-        queryText ? queryText : 'Whats in this image?', bitImage
+        queryText, bitImage
     ], safetySettings);
     const response = await result.response;
     const text = response.text();
