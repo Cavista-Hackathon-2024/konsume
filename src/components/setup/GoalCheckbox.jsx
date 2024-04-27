@@ -14,7 +14,7 @@ const GoalCheckbox = ({ label,data }) => {
   
   return (
     <div className="">
-      <div class="flex items-center me-4">
+      <div className="flex items-center me-4">
         <input 
         id="inline-radio" 
         type="radio" 
