@@ -32,7 +32,7 @@ const Setup = () => {
                         }
                         else{
                             toast.success(data);   //send to dashboard page in sign in was sucessful
-                            navigate(dashboard);
+                            navigate('/dashboard');
                         }
                     }
                 }

@@ -18,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['a
     get_user_data();       //call the get_user_data function which has been imported from the functions.php file
 }
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "put_add_info" && isset($_POST['name']) && isset($_POST['weight']) && isset($_POST['userGoal']) && isset($_POST['userDiseases'])){       //ensure the request method is post and all needed varianles are present
+if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == "put_add_info" && isset($_POST['height']) && isset($_POST['weight']) && isset($_POST['userGoal']) && isset($_POST['userDiseases'])){       //ensure the request method is post and all needed varianles are present
     put_add_info();       //call the get_user_data function which has been imported from the functions.php file
 }
 
-
-exit(); //exit the current script
+exit();

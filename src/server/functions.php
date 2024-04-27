@@ -132,6 +132,7 @@ function get_user_data(){
  * function to put additional info into the database
  */
 function put_add_info(){
+    echo "djdjd";
     //code...
     $db = mysqli_connect("localhost","root","","cavista_healthcare_app");       //establish database connection
     $height = $_POST['height'];
@@ -140,6 +141,7 @@ function put_add_info(){
     $user_goal = $_POST['userGoal'];
     $user_disease = $_POST['userDiseases'];
     $email = $_SESSION['email'];
+    session_start();
 
     $query = "UPDATE user SET 
                 age = '$age', 
@@ -149,7 +151,7 @@ function put_add_info(){
                 health_challenges = '".serialize($user_disease)."' 
               WHERE email = '$email'";
 
-    if(!($query_1)){
+    if(!($query)){
         dbErr();
     }
     else{

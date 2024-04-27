@@ -46,7 +46,7 @@ const Login = () => {
                         console.error(data);
                     }
                     else{
-                        // navigate("/dashboard");     //send to dashboard page in sign in was sucessful
+                        navigate("/dashboard");     //send to dashboard page in sign in was sucessful
                     }
                 }
             }
