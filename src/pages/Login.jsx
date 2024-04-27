@@ -33,7 +33,7 @@ const Login = () => {
     const validateUser = (email, password) => {
         //send asynchronous request to the php file
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
+        xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php',true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {

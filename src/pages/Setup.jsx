@@ -19,7 +19,7 @@ const Setup = () => {
         if (height.length > 0 && age.length > 0 && weight.length > 0 && userGoal.length > 0 && userDiseases.length > 0) {
             // navigate("/dashboard");
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
+            xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php',true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -31,8 +31,8 @@ const Setup = () => {
                             toast.error(data);      //throw an error if the sign in is not sucessful
                         }
                         else{
-                            toast.success(data)    //send to dashboard page in sign in was sucessful
-                            navigate(dashboard)
+                            toast.success(data);   //send to dashboard page in sign in was sucessful
+                            navigate(dashboard);
                         }
                     }
                 }

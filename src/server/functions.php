@@ -141,15 +141,15 @@ function put_add_info(){
     $user_disease = $_POST['userDiseases'];
     $email = $_SESSION['email'];
 
+    $query = "UPDATE user SET 
+                age = '$age', 
+                height = '$height', 
+                weight = '$weight', 
+                goal = '$user_goal', 
+                health_challenges = '".serialize($user_disease)."' 
+              WHERE email = '$email'";
 
-
-    $query_1 = mysqli_query($db,"UPDATE user SET age = '$age' WHERE email = '$email'");
-    $query_2 = mysqli_query($db,"UPDATE user SET height = '$height' WHERE email = '$email'");
-    $query_3 = mysqli_query($db,"UPDATE user SET weight = '$weight' WHERE email = '$email'");
-    $query_4 = mysqli_query($db,"UPDATE user SET goal = '$user_goal' WHERE email = '$email'");
-    $query_5 = mysqli_query($db,"UPDATE user SET health_challenges	 = '$user_disease' WHERE email = '$email'");
-
-    if(!($query_1) || !($query_2) || !($query_3) || !($query_4) || !($query_5)){
+    if(!($query_1)){
         dbErr();
     }
     else{
