@@ -7,7 +7,7 @@ const DashboardBody = () => {
     return (
         <div className='grid grid-cols-3'>
             <div className='grid grid-rows-2 gap-2'>
-                <div className='bg-[#8C77EC] p-2 gap-2 flex flex-col rounded-2xl'>
+                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl'>
                     <div className='flex justify-between items-center'>
                         <p className=' font-bold text-xs text-white'>Foods to Consume <br />(Percentage of Daily Intake)</p>
                         <img src={star} alt="star" />
@@ -26,7 +26,7 @@ const DashboardBody = () => {
                     </div>
                 </div>
 
-                <div className='bg-[#8C77EC] p-2 gap-2 flex flex-col rounded-2xl'>
+                <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl'>
                     <div className='flex justify-between items-center'>
                         <p className=' font-bold text-xs text-white'>Foods to Consume <br />(Percentage of Daily Intake)</p>
                         <img src={star} alt="star" />
@@ -50,7 +50,7 @@ const DashboardBody = () => {
             </div>
             <div className='grid grid-rows-2 gap-2'>
                 <div className='bg-[#D6FBC4] p-4 rounded-2xl'>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex justify-between items-center mb-5'>
                         <p className=' font-bold text-xs text-[#8C77EC]'>Recommended Protein Sources</p>
                         <img src={star3} alt="star" />
                     </div>
@@ -63,7 +63,7 @@ const DashboardBody = () => {
                 </div>
 
                 <div className='bg-[#FF004D] p-4 rounded-2xl'>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex justify-between items-center mb-5'>
                         <p className=' font-bold text-xs'>Foods to avoid</p>
                         <img src={star4} alt="star" />
                     </div>
