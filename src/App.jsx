@@ -26,7 +26,11 @@ function App() {
             <Setup />
           </SetupProvider>
           }/>
-          <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='/dashboard' element={
+            <SetupProvider>
+              <Dashboard />
+            </SetupProvider>
+          }/>
           
        </Routes>
      </BrowserRouter>

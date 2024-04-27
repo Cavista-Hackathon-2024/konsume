@@ -5,13 +5,16 @@ import BioData from '../components/setup/BioData'
 import Goals from '../components/setup/Goals'
 import HealthConditions from '../components/setup/HealthConditions'
 import SetupContext from '../context/SetupContext'
+import { useNavigate } from 'react-router-dom'
 
 const Setup = () => {
     const {userGoal, setUserGoal, userDiseases, setUserDiseases, name, age, weight} = useContext(SetupContext);
 
     const handleValidation = () => {
         console.log(userGoal,userDiseases,name,age,weight);
+
     }
+    const navigate = useNavigate();
     return (
         <div className="w-10/12 m-auto">
             <div className="md:p-10 p-6">

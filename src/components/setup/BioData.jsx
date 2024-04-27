@@ -3,7 +3,7 @@ import SetupContext from '../../context/SetupContext';
 
 const BioData = () => {
     // State hooks for input values
-    const {name,gender, age, weight} = useContext(SetupContext);
+    const {name,gender, age, weight, setAge, setName, setGender} = useContext(SetupContext);
 
     // Function to log input values
     const logValues = () => {
