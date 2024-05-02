@@ -25,7 +25,7 @@ const BioData = () => {
                                 type="name"
                                 id="name"
                                 placeholder="Name"
-                                className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
+                                className="bg-[#D6FBC4] md:p-6 rounded-full outline-none p-2 text-sm md:text-lg "
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -36,7 +36,7 @@ const BioData = () => {
                                 type="number"
                                 id="age"
                                 placeholder="Age"
-                                className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
+                                className="bg-[#D6FBC4] md:p-6 rounded-full outline-none p-2 text-sm md:text-lg"
                                 value={age}
                                 onChange={(e) => setAge(e.target.value)}
                             />
@@ -46,7 +46,7 @@ const BioData = () => {
                             <select
                                 id="gender"
                                 placeholder="Gender"
-                                className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
+                                className="bg-[#D6FBC4] md:p-6 rounded-full outline-none text-sm md:text-lg p-2 "
                                 value={gender}
                                 onChange={(e) => setGender(e.target.value)}
                             >
@@ -60,12 +60,12 @@ const BioData = () => {
                                 type="number"
                                 id="weight"
                                 placeholder="Weight"
-                                className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
+                                className="bg-[#D6FBC4] p-2 md:p-6 rounded-full outline-none text-sm md:text-lg "
                                 value={weight}
                                 onChange={(e) => setWeight(e.target.value)}
                             />
                         </div>
-                        <button type="button" onClick={logValues} className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Submit</button>
+                        {/* <button type="button" onClick={logValues} className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Submit</button> */}
                     </form>
                 </div>
             </div>
