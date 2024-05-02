@@ -18,7 +18,7 @@ const HomeNav = () => {
                     <li className=' font-medium text-lg'>Features</li>
                 </ul>
                 <Link to="/signup">
-                    <button className='bg-[#8DCF38] text-[#005450] w-[123px] py-[10px] rounded-[49px] mb-[30px]'>Join Us</button>
+                    <button className='bg-[#8DCF38] text-[#005450] w-[123px] py-[10px] rounded-[49px] md:m-0 mb-[30px]'>Join Us</button>
                 </Link>
             </div>
             <img src={ham} alt="hamburger" className='md:hidden block' onClick={navClick} />
