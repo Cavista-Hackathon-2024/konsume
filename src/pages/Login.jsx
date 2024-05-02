@@ -1,60 +1,82 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import konsumeapi from '../https/konsumeapi';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // Function to handle form submission
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        let isThrough = true;       //initialize a variablee to hold whether user passes authentication with a true boolean value
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     let isThrough = true;
 
-        // Validate user inputs
-        if (email.trim().length < 1) {      // chek if user actually inputted email
-            toast.error('Email is required.');  //assign false to the boolean value if no email is inputted
-            isThrough  = false;
-        }
-        if (password.trim().length < 1) {         //check if user inputted password
-            toast.error('Password is required.');       //assign false to the boolean value if no email is inputted
-            isThrough = false;
+    //     // Validate user inputs
+    //     if (email.trim().length < 1) {
+    //         toast.error('Email is required.');
+    //         isThrough  = false;
+    //     }
+    //     if (password.trim().length < 1) {   
+    //         toast.error('Password is required.');
+    //         isThrough = false;
 
-        }
+    //     }
 
-        // Call a function to validate user
-        if(isThrough){
-            validateUser(email, password);
-        }
-    }
+    //     // Call a function to validate user
+    //     if(isThrough){
+    //         validateUser(email, password);
+    //     }
+    // }
 
     // Function to validate user credentials
-    const validateUser = (email, password) => {
-        //send asynchronous request to the php file
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    let data = xhr.response;
-                    // check if data is equal to true to tell if user sign in was sucessful
-                    console.log(data);
-                    if(data != true){
-                        toast.error(data);      //throw an error if the sign in is not sucessful
-                        console.error(data);
-                    }
-                    else{
-                        // navigate("/dashboard");     //send to dashboard page in sign in was sucessful
-                    }
-                }
-            }
-        };
-        xhr.onerror = function () {
-            toast.error('Request failed. Network error');       // Handle error
-        };
-        xhr.send(`action=login&email=${email}&pwd=${password}`);
+    // const validateUser = (email, password) => {
+    //     //send asynchronous request to the php file
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //     xhr.onload = () => {
+    //         if (xhr.readyState === XMLHttpRequest.DONE) {
+    //             if (xhr.status === 200) {
+    //                 let data = xhr.response;
+    //                 // check if data is equal to true to tell if user sign in was sucessful
+    //                 console.log(data);
+    //                 if(data != true){
+    //                     toast.error(data);      //throw an error if the sign in is not sucessful
+    //                     console.error(data);
+    //                 }
+    //                 else{
+    //                     // navigate("/dashboard");     //send to dashboard page in sign in was sucessful
+    //                 }
+    //             }
+    //         }
+    //     };
+    //     xhr.onerror = function () {
+    //         toast.error('Request failed. Network error');       // Handle error
+    //     };
+    //     xhr.send(`action=login&email=${email}&pwd=${password}`);
+    // }
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleSubmit = async () => {
+        if (!validateEmail(email)) {
+            toast.error("Invalid Email");
+            return;
+        }
+        await konsumeapi.post("/Login/login", {
+            email: email,
+            password: password
+        }).then(
+            ({data}) => {
+                toast.success('Login Successful!');
+                console.log(data);
+            })
+            .catch((error) => {
+                toast.error(error);
+            })
     }
 
     return (
@@ -74,8 +96,8 @@ const Login = () => {
                                 <label htmlFor="password" className=" text-sm md:text-xl font-bold">Password</label>
                                 <input type="password" placeholder="Password" id="password" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
-                            <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex">Login</button>
                         </form>
+                        <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex" onClick={handleSubmit}>Login</button>
                     </div>
                 </div>
             </div>

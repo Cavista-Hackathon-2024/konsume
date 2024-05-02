@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 const HomeBody = () => {
   return (
@@ -7,7 +8,9 @@ const HomeBody = () => {
             <h1 className=' font-normal text-5xl  text-center'><span className='text-[#8C77EC]'>Eating Healthy</span> has never been <span className='text-[#FFC501]'>Easier</span>.</h1>
             <p className=' text-xl font-normal text-center'>Konsume's AI-driven platform offers personalized nutrition plans and tailored wellness tips, empowering you to achieve your nutritional and health goals effortlessly. </p>
         </div>
-        <button className='bg-[#8DCF38] text-[#005450] w-[123px] py-[10px] rounded-[49px] mb-[30px]'>Join Us</button>
+        <Link to="/signup">
+          <button className='bg-[#8DCF38] text-[#005450] w-[123px] py-[10px] rounded-[49px] mb-[30px]'>Join Us</button>
+        </Link>
 
     </div>
   )
