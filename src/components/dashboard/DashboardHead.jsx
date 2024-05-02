@@ -42,7 +42,7 @@ const DashboardHead = () => {
         <p className=' text-sm font-light'>Hello, {textForUserGoal}</p>
         <p className=' font-medium text-sm'><span className='text-[#1E5E08]'>Meal Plan:</span> <span className='text-[#FFC501]'>{answer}</span> </p>
         </div>
-        <img src={veg} alt="veg" className='w-[250px]'/>
+        <img src={veg} alt="veg" className='md:block hidden w-[250px]'/>
         </div>
     </div>
   )

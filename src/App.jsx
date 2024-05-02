@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute'
 import SetupContext, { SetupProvider } from './context/SetupContext'
 import Dashboard from './pages/Dashboard'
 import Scanner from './pages/Scanner'
+import Home from './pages/Home'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
               <Scanner />
             </SetupProvider>
           }/>
+          <Route path='/' element={<Home />}/>
           
        </Routes>
      </BrowserRouter>
