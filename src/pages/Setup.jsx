@@ -17,8 +17,8 @@ const Setup = () => {
     const navigate = useNavigate();
     const handleValidation = () => {
         // console.log(userGoal, userDiseases, height, age, weight);
-        // if (height.length > 0 && age.length > 0 && weight.length > 0 && userGoal.length > 0 && userDiseases.length > 0) {
-        //     // navigate("/dashboard");
+        if (height.length > 0 && age.length > 0 && weight.length > 0 && userGoal.length > 0 && userDiseases.length > 0) {
+            navigate("/dashboard");
         //     const xhr = new XMLHttpRequest();
         //     xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php',true);
         //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -44,13 +44,14 @@ const Setup = () => {
         //     xhr.send(`action=signup&height=${height}&age=${age}&weight=${weight}&userGoal=${userGoal}&userDiseases=${userDiseases}`);
         // } else {
         //     toast.error("Please complete all necessary form details")
-        // }
-        navigate('/dashboard');
+        }else{
+            toast.error("Fill up the form")
+        }
     }
     
     return (
         <div className="w-10/12 m-auto">
-            <div className="md:p-10 p-6">
+            <div className="md:p-10 p-3">
 
                 <img src={backbtn} alt="backbtn" />
                 <Welcome />
@@ -60,7 +61,9 @@ const Setup = () => {
 
                 <div className="flex flex-col items-center gap-4">
                     <p className="text-[#8C77EC] font-bold ">Watch as you make progress towards your health goals!</p>
-                    <button className="bg-[#8DCF38] px-[84px] py-[7px] text-[#1E5E08] rounded-[34px]" onClick={handleValidation}>Continue</button>
+                    {/* <button className="bg-[#8DCF38] px-[84px] py-[7px] text-[#1E5E08] rounded-[34px]" onClick={handleValidation}>Continue</button> */}
+                    <button type="submit" className="md:py-[7px] py-1 md:px-[84px] px-2 bg-[#8DCF38] text-[#1E5E08] rounded-[34.71px] mx-auto w-fit flex" onClick={handleValidation}>Continue</button>
+
                 </div>
             </div>
         </div>
