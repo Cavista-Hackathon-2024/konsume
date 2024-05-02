@@ -3,11 +3,11 @@ import SetupContext from '../../context/SetupContext';
 
 const BioData = () => {
     // State hooks for input values
-    const {name,gender, age, weight, setAge, setName, setGender, setWeight} = useContext(SetupContext);
+    const {height,gender, age, weight, setAge, setHeight, setGender, setWeight, name, setName} = useContext(SetupContext);
 
     // Function to log input values
     const logValues = () => {
-        console.log('Name:', name);
+        console.log('Height:', height);
         console.log('Age:', age);
         console.log('Gender:', gender);
         console.log('Weight:', weight);
@@ -22,7 +22,7 @@ const BioData = () => {
                         <div className="grid">
                             <label htmlFor="name" className="text-sm md:text-xl font-bold">Name</label>
                             <input
-                                type="text"
+                                type="name"
                                 id="name"
                                 placeholder="Name"
                                 className="bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none"
