@@ -2,81 +2,65 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import konsumeapi from '../https/konsumeapi';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
+import Cookies from "js-cookie"
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     let isThrough = true;
-
-    //     // Validate user inputs
-    //     if (email.trim().length < 1) {
-    //         toast.error('Email is required.');
-    //         isThrough  = false;
-    //     }
-    //     if (password.trim().length < 1) {   
-    //         toast.error('Password is required.');
-    //         isThrough = false;
-
-    //     }
-
-    //     // Call a function to validate user
-    //     if(isThrough){
-    //         validateUser(email, password);
-    //     }
-    // }
-
-    // Function to validate user credentials
-    // const validateUser = (email, password) => {
-    //     //send asynchronous request to the php file
-    //     const xhr = new XMLHttpRequest();
-    //     xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php');
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //     xhr.onload = () => {
-    //         if (xhr.readyState === XMLHttpRequest.DONE) {
-    //             if (xhr.status === 200) {
-    //                 let data = xhr.response;
-    //                 // check if data is equal to true to tell if user sign in was sucessful
-    //                 console.log(data);
-    //                 if(data != true){
-    //                     toast.error(data);      //throw an error if the sign in is not sucessful
-    //                     console.error(data);
-    //                 }
-    //                 else{
-    //                     // navigate("/dashboard");     //send to dashboard page in sign in was sucessful
-    //                 }
-    //             }
-    //         }
-    //     };
-    //     xhr.onerror = function () {
-    //         toast.error('Request failed. Network error');       // Handle error
-    //     };
-    //     xhr.send(`action=login&email=${email}&pwd=${password}`);
-    // }
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    const handleSubmit = async () => {
+    // const handleSubmit = async () => {
+    //     if (!validateEmail(email)) {
+    //         toast.error("Invalid Email");
+    //         return;
+    //     }
+    //     await konsumeapi.post("/Login/login", {
+    //         email: email,
+    //         password: password
+    //     }).then(
+    //         ({data}) => {
+    //             toast.success('Login Successful!');
+    //             navigate('/dashboard');
+    //             console.log(data);
+    //         })
+    //         .catch((error) => {
+    //             toast.error(error.message);
+    //             console.log(error);
+    //         })
+    // }
+
+    const handleSubmitt = (e) => {
+        e.preventDefault();
         if (!validateEmail(email)) {
             toast.error("Invalid Email");
             return;
         }
-        await konsumeapi.post("/Login/login", {
-            email: email,
-            password: password
-        }).then(
-            ({data}) => {
-                toast.success('Login Successful!');
-                console.log(data);
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+                const { accessToken, refreshToken } = user.stsTokenManager;
+                Cookies.set('accessToken', accessToken);
+                Cookies.set('refreshToken', refreshToken);
+                toast.success("Logged in successfully!")
+                navigate('/dashboard');
             })
             .catch((error) => {
-                toast.error(error);
-            })
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                toast.error(errorMessage)
+                // console.log(errorMessage, errorCode);
+            });
+        setEmail("");
+        setPassword("");
     }
 
     return (
@@ -87,7 +71,7 @@ const Login = () => {
                 <div className="imgg_container">
                     <div className="signup_img"></div>
                     <div className="signup_container md:p-[50px]">
-                        <form onSubmit={handleSubmit} className="signup_content grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-2 md:gap-y-16 gap-y-7">
+                        <form onSubmit={handleSubmitt} className="signup_content grid md:grid-cols-2 grid-cols-1 md:gap-10 gap-2 md:gap-y-16 gap-y-7">
                             <div className="grid ">
                                 <label htmlFor="email" className=" text-sm md:text-xl font-bold">Email</label>
                                 <input type="text" placeholder="Email Address" id="email" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -97,7 +81,7 @@ const Login = () => {
                                 <input type="password" placeholder="Password" id="password" className=" bg-[#D6FBC4] p-3 md:p-6 rounded-full outline-none" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
                         </form>
-                        <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex" onClick={handleSubmit}>Login</button>
+                        <button type="submit" className="py-[7px] px-[84px] bg-[#8DCF38] rounded-[34.71px] mx-auto w-fit flex" onClick={handleSubmitt}>Login</button>
                     </div>
                 </div>
             </div>
