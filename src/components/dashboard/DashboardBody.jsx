@@ -71,7 +71,7 @@ const DashboardBody = () => {
     const element = document.querySelectorAll(".js-tilt");
     VanillaTilt.init(element);
     return (
-        <div className='grid grid-cols-3 gap-3'>
+        <div className='grid md:grid-cols-3 grid-cols-1 gap-3 px-5'>
             <div className='grid grid-rows-2 gap-2'>
                 <div className='bg-[#8C77EC] p-5 gap-2 flex flex-col rounded-2xl js-tilt'>
                     <div className='flex justify-between items-center'>

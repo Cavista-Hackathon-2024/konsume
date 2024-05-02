@@ -7,9 +7,9 @@ import scanner from "../../assets/scanner.png"
 import settings from "../../assets/settings.png"
 import konsum from "../../assets/konsume.png"
 
-const Sidebar = () => {
+const Sidebar = ({toggled, setToggled}) => {
   return (
-    <div className='h-full p-8 bg-[#DAFDC9] fixed left-0 min-w-[250px] top-0'>
+    <div className={`h-full p-8 bg-[#DAFDC9] md:fixed left-0 min-w-[250px] top-0  ${toggled ? 'left-0' : 'md:left-0 left-[-300px]'} absolute z-50 transition-all`}>
         <div className='h-full flex flex-col gap-9 items-start'>
             <h1 className=' font-bold text-3xl mb-4'>Konsume</h1>
             <SidebarItem text="Dashboard" icon={dashboard} />
