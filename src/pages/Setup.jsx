@@ -17,33 +17,9 @@ const Setup = () => {
     const navigate = useNavigate();
     const handleValidation = () => {
         // console.log(userGoal, userDiseases, height, age, weight);
-        if (height.length > 0 && age.length > 0 && weight.length > 0 && userGoal.length > 0 && userDiseases.length > 0) {
+        if (age.length > 0 && weight.length > 0 && userGoal.length > 0 && userDiseases.length > 0) {
+            toast.success("Setup successful")
             navigate("/dashboard");
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.open('POST', 'http://localhost/Cavista Project/konsume/konsume/src/server/script.php',true);
-        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        //     xhr.onload = () => {
-        //         if (xhr.readyState === XMLHttpRequest.DONE) {
-        //             if (xhr.status === 200) {
-        //                 let data = xhr.response;
-        //                 // check if data is equal to true to tell if user sign in was sucessful
-        //                 console.log(data);
-        //                 if(data != true){
-        //                     toast.error(data);     + //throw an error if the sign in is not sucessful
-        //                 }
-        //                 else{
-        //                     toast.success(data);   //send to dashboard page in sign in was sucessful
-                            
-        //                 }
-        //             }
-        //         }
-        //     };
-        //     xhr.onerror = function () {
-        //         toast.error('Request failed. Network error');       // Handle error
-        //     };
-        //     xhr.send(`action=signup&height=${height}&age=${age}&weight=${weight}&userGoal=${userGoal}&userDiseases=${userDiseases}`);
-        // } else {
-        //     toast.error("Please complete all necessary form details")
         }else{
             toast.error("Fill up the form")
         }
